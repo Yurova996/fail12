@@ -33,3 +33,19 @@ def get_shop_list_by_dishes(dishes, person_count):
     return
 
 
+##################################
+
+with open('text/1.txt', 'r', encoding='utf-8') as file1, \
+     open('text/2.txt', 'r', encoding='utf-8') as file2,\
+     open('text/3.txt', 'r', encoding='utf-8') as file3,\
+     open('text/resul.txt', 'a+', encoding='utf-8') as file_result:
+    def lines_file(file_):
+        line_file = file_.readlines()
+        file_info = ['\n' + file_.name + '\n', str(len(line_file)) + '\n']
+        return file_info + line_file
+
+    list_files = [lines_file(file1), lines_file(file2), lines_file(file3)]
+    r = sorted(list_files, key=len)
+    result_text = r[0] + r[1] + r[2]
+    for line in result_text:
+        file_result.write(line)
